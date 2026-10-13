@@ -1,0 +1,73 @@
+PROCEDIMIENTO DE CONSTRUCCION REPRODUCIBLE
+AdaptaPro - Libro de inventarios 2026, version 1.1.0
+Fecha de esta construccion: 10-10-2026
+
+1. REQUISITOS DEL CONSTRUCTOR (distintos de los del usuario final)
+   - Windows con Excel de escritorio 16.0 (probado: 16.0.19127.20800 x86).
+   - PowerShell 5.1 (los scripts usan -NoProfile -ExecutionPolicy Bypass).
+   - Python 3.x solo para verificaciones externas (verifica_entrega.py,
+     dump_hoja.py y utilidades de lectura del .xlsm como ZIP).
+   - "Acceso de confianza al modelo de objetos del proyecto VBA" (AccessVBOM)
+     activado TEMPORALMENTE y solo con autorizacion del propietario, porque la
+     construccion 0.6.1 y la compilacion 0.6.2 usan VBProject por COM. Al
+     terminar se revierte al estado previo (sin definir) y se deja constancia
+     en el informe. No se toca VBAWarnings ni se crean carpetas de confianza.
+
+2. FUENTES
+   - Estructura y formato: C:\libinv177\construccion\tools\crear_base.ps1
+   - Codigo VBA (UTF-8): C:\libinv177\construccion\vba\*.bas + ThisWorkbook.cls
+     (16 modulos de producto + modPruebas solo para el libro de pruebas).
+   - Constructor y verificadores: C:\libinv177\construccion\tools\*.ps1/*.py
+
+3. PASOS (cada invocacion Excel es una instancia nueva y aislada)
+   a) Libro base sin macros:
+        powershell -NoProfile -ExecutionPolicy Bypass -File crear_base.ps1
+     Produce construccion\base\base.xlsm (20 hojas, 69 botones, sin VBA).
+   b) Libro de pruebas (con modPruebas):
+        powershell -NoProfile -ExecutionPolicy Bypass -File tools\xlcall.ps1 -Script tools\build_t.ps1
+     Importa los .bas con VBProject.VBComponents.Import (previa conversion
+     UTF-8 -> ANSI/cp1252 a temporales, porque Import lee ANSI) y guarda con
+     FileFormat = 52 en construccion\out\T.xlsm. Excel compila y guarda el
+     proyecto; no se inyecta vbaProject.bin con herramientas externas.
+   c) Libro entregable (sin modPruebas): igual con tools\build_entrega.ps1
+     hacia entrega\LIBRO_INVENTARIOS_2026.xlsm (parametro -SinPruebas).
+   d) Compilacion forzada de TODOS los modulos (0.6.2):
+        ...\xlcall.ps1 -Script tools\compila_vba.ps1      (pruebas)
+        ...\xlcall.ps1 -Script tools\compila_entrega.ps1  (entregable)
+     Abre el VBE por COM (FindControl(1, 578).Execute, comando
+     "Compilar VBAProject"); el control queda Enabled = False. Cero errores;
+     si hubiera error se registran modulo y linea en COMPILACION*.txt.
+   e) Inicializacion del entregable (tools\inicializar_entrega.ps1):
+     ejercicio 2026, moneda Bs., version 1.1.0, metodo precargados; identidad
+     (entidad/RIF/responsable) vacia a proposito: el responsable la captura
+     con el boton "Capturar configuracion". Estado del archivo: SIN CAPTURAR.
+   f) Inventario de botones y macros 0.5 + ejecucion 0.6.4
+     (tools\botones_t.ps1 / tools\botones_entrega.ps1 -> BOTONES_MACROS*.txt):
+     69 formas con OnAction, 13 macros unicas; cada macro se ejecuta una vez
+     con libro reabierto y modUI.ModoPrueba = True; se comprueba que
+     EnableEvents/Calculation/ScreenUpdating/DisplayAlerts quedan como estaban
+     ("restaurado") y se cuenta el delta real de filas de BITACORA.
+   g) Suite de autocontrol T01-T28 (tools\run_suite.ps1):
+     corre modPruebas.Suite y genera INFORME_AUTOCONTROL_T01_T28.txt
+     (28 PASA / 0 FALLA exigidos).
+   h) Humo de produccion (tools\smoke_prod.ps1): apertura, compilacion,
+     funciones publicas, Workbook_Open con eventos, guardado formato 52 y
+     reapertura, macros deshabilitadas (proteccion + aviso de modo seguro).
+   i) Formas (tools\verifica_formas*.ps1): colores, texto, macro asociada y
+     que ningun boton tape una celda con dato (69 formas).
+   j) Proyecto (tools\verifica_entrega.py): 20 hojas, 0 vinculos externos,
+     36 componentes, codigo identico a la fuente, sin modPruebas.
+   k) Capturas 0.6.5 (tools\capturas_botones.ps1): libro visible, invocacion
+     calificada desde libro externo, PNG en entrega\capturas\.
+   l) Segunda instancia 0.6.7: se repiten d) y f) en instancias nuevas.
+
+4. REPRODUCIBILIDAD
+   Repetir los pasos a)-l) con las mismas fuentes produce el mismo libro
+   (difieren solo marcas de tiempo internas del ZIP). El codigo VBA vive en
+   .bas versionables; el .xlsm nunca se edita a mano.
+
+5. SALIDA
+   entrega\LIBRO_INVENTARIOS_2026.xlsm (limpio, sin datos de prueba),
+   entrega\LIBRO_INVENTARIOS_2026_PRUEBAS.xlsm (copia con datos y resultados),
+   entrega\codigo\ (VBA exportado), capturas, informe, lista de revision,
+   manifiesto SHA-256 y este procedimiento.

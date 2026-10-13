@@ -1,0 +1,71 @@
+LISTA DE REVISION EN FRIO, DEFECTOS Y LIMITES
+AdaptaPro - Libro de inventarios 2026, version 1.1.0
+
+A. REVISION EN FRIO (persona distinta, sin ayuda del constructor)
+[ ] 1. Abrir LIBRO_INVENTARIOS_2026.xlsm con macros HABILITADAS: abre sin
+       ningun cuadro de error de VBA; muestra el aviso de apertura
+       ("modo protegido" porque la identidad esta vacia) y el art. 177.
+[ ] 2. Abrirlo con macros DESHABILITADAS: 20/20 hojas protegidas, CATALOGO no
+       acepta escritura, aviso de modo seguro visible en CONFIGURACION A30:A31
+       y ningun mensaje de "macro no disponible" fuera de ese aviso.
+[ ] 3. CONFIGURACION: ejercicio 2026, Bs., 1.1.0, metodo precargados; entidad,
+       RIF y responsable vacios; Estado SIN CAPTURAR.
+[ ] 4. "Capturar configuracion" pide identidad; "Validar configuracion" lista
+       lo que falta; nada se abre sin identidad completa.
+[ ] 5. "Abrir mes siguiente" abre 2026-ENE (queda ABIERTO) y lo registra en
+       BITACORA (+1 fila); EnableEvents/Calculation/ScreenUpdating/
+       DisplayAlerts quedan como estaban.
+[ ] 6. Cargar un material en CATALOGO y saldo en enero C/D; "Validar mes"
+       informa; "Cerrar mes" cierra con respaldo previo e instantanea.
+[ ] 7. "Resumen anual" construye definitivo + provisional sin sumar stocks.
+[ ] 8. "Respaldo" crea la copia en _RESPALDOS; "Nuevo anio" exige diciembre
+       cerrado y ruta nueva.
+[ ] 9. Cotejar MANIFIESTO_SHA256.txt: el SHA-256 del .xlsm coincide.
+[ ] 10. Cotejar que entrega\codigo\*.bas compila igual (verifica_entrega.py
+       dijo CONFORME) y que las capturas muestran lo descrito en el informe.
+
+B. DEFECTOS ENCONTRADOS DURANTE LA CONSTRUCCION (todos corregidos y reverificados)
+[1] Error de compilacion en modulo oculto (modGlobales) + macro
+    BtnCapturarConfiguracion no ejecutable (reporte del usuario, errores 1-2).
+    Causa raiz: declaraciones de modulo colocadas DESPUES del primer
+    procedimiento (MascaraCant). Efecto: el proyecto VBA no compilaba y Excel
+    mostraba el error al abrir. Fix: declaraciones antes del primer
+    procedimiento en todos los modulos; verificado con compilacion forzada
+    (control 578, 0 errores) y apertura sin dialogos VBA.
+[2] Mojibake (acentos rotos) en modCalculo/modUI/modValidacion dentro del
+    .xlsm. Causa: VBComponents.Import lee ANSI/cp1252 y las fuentes son
+    UTF-8. Fix: el constructor importa copias temporales convertidas a ANSI;
+    verificado con diff_modulo.py (0 diferencias) y verifica_entrega.py
+    (CONFORME, codigo identico a la fuente).
+[3] TieneVBA abria el VBE en depuracion (excepcion 0x800A9C68) y colgaba T14.
+    Causa: leer libro.VBProject.VBComponents dispara el editor VBA.
+    Fix: usar libro.HasVBProject (no exige AccessVBOM). T14 aislado y suite
+    28/28.
+[4] Abrir enero en libro sin configurar marcaba INCIDENCIA con error crudo
+    "Subindice fuera del intervalo". Causa: HojaMes() arma el nombre con el
+    anio de CONFIGURACION ("-ENE" si esta vacio). Fix: HojaMes informa con
+    contexto ("libro sin configurar...") y AbrirMes devuelve el problema sin
+    mutar estado (nueva funcion AnioConfigurado). En el entregable el anio
+    viene precargado, asi que el flujo normal no cambia.
+[5] Instancias zombie de Excel por dialogos de error VBA sin atender
+    (llamadas COM directas a funciones que relanzan errores). Contaminaban las
+    corridas siguientes. Fix de proceso: matar instancias y borrar
+    _nuevo_anio.xlsm antes de cada corrida; evidencia final tomada en
+    instancias aisladas y limpias.
+[6] Botones de CONFIGURACION tapaban el aviso nuevo (A22/A23). Fix: aviso en
+    A30/A31 sin ajuste de texto, fuera de la banda de botones; verifica_formas
+    volvio a PASS (69 formas, ningun boton sobre celda con dato).
+[7] Captura 04 salio en blanco una vez (carrera del portapapeles
+    CopyPicture->Paste). Fix: pausa de 500 ms tras CopyPicture; repetida la
+    captura con contenido verificado.
+
+C. LIMITES DEL ENTORNO PROBADO (copiado de ENTORNO_PROBADO.txt)
+   Excel 16.0 Build 19127 (16.0.19127.20800) x86 32 bits; Windows 11 Home
+   10.0.26200; region es-VE (decimal ",", miles "."); VBA7 sin API Windows.
+   64 bits NO VERIFICADO. Sin compatibilidad declarada con Mac, web,
+   Google Sheets ni LibreOffice. AccessVBOM se activo temporalmente con
+   autorizacion y se revirtio al final (valor sin definir).
+   Nota 2026-10-12: a peticion expresa del propietario, VBAWarnings quedo en 1
+   (macros habilitadas en Excel para todo uso). Las evidencias se tomaron con
+   automatizacion COM y con AutomationSecurity forzado donde la prueba lo
+   exige (fase D), por lo que siguen siendo validas.

@@ -1,0 +1,35 @@
+AdaptaPro - Libro de inventarios 1.1.0 - autocontrol
+Fecha: 2026-10-10 01:27:37 | Archivo: T.xlsm
+Metodo: PROMEDIO PONDERADO PERIODICO MENSUAL | https://adaptaproerp.com/blog_openconde/
+
+T01 PASA: Caso HT-0001 completo, cierre y apertura de febrero
+T02 PASA: Duplicados por mayusculas/espacios, alta y pegado
+T03 PASA: Codigos con ceros iniciales y catalogo reordenado
+T04 PASA: Salidas mayores a disponibles
+T05 PASA: Cantidad cero con valor no cero
+T06 PASA: Stock cero valido, apertura vacia invalida, costo cero
+T07 PASA: Agotamiento con venta y otros: residuo exacto
+T08 PASA: Agotamiento solo ventas o solo otros
+T09 PASA: Alta y baja con stock: no pierde existencias
+T10 PASA: Descripcion nueva no reescribe meses cerrados
+T11 PASA: Bloque pegado con negativo/texto/formula: rechazo total
+T12 PASA: Formula rota o ausente: bloqueo de cierre
+T13 PASA: Importacion de diciembre: fuente valida e invalidas
+T14 PASA: Nuevo anio: saldo identico, origen intacto, VBA presente
+T15 PASA: Repetir apertura/cierre/importacion: idempotente
+T16 PASA: Respaldo fallido: no hay cierre falso
+T17 PASA: Fallo a mitad de cierre: INCIDENCIA, no exito parcial
+T18 PASA: Proteccion segura antes y despues de guardar
+T19 PASA: Configuracion de separadores restaurada
+T20 PASA: Resumen al corte: flujos sumados, stocks no sumados
+T21 PASA: Unidades mixtas: cantidades no sumadas
+T22 PASA: Detalle ausente o descuadrado: bloqueo
+T23 PASA: Fracciones, centavos pequenos y error de redondeo
+T24 PASA: Todos los botones y proyecto sin referencias rotas
+      T25 tiempos: apertura=0,53s validacion=3,11s cierre=13,19s (5.000 materiales)
+T25 PASA: 5.000 materiales: tiempos de apertura/validacion/cierre
+T26 PASA: Exportacion del libro para revision visual
+T27 PASA: Archivo limpio: sin enlaces externos ni marcadores
+T28 PASA: Trazabilidad normativa: cita norma, Gaceta y fecha
+
+RESUMEN: pasadas=28 fallidas=0

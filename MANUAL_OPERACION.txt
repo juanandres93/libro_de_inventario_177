@@ -1,0 +1,69 @@
+MANUAL DE OPERACION
+AdaptaPro - Libro de inventarios 2026, version 1.1.0
+Metodo obligatorio: PROMEDIO PONDERADO PERIODICO MENSUAL (no es promedio movil)
+Moneda: Bs. | Un ejercicio, una entidad/RIF por archivo.
+
+1. APERTURA
+   Al abrir, si Excel muestra la banda amarilla "Macros deshabilitadas", pulse
+   "Habilitar contenido". Sin macros los botones no responden y solo puede
+   consultar: el archivo se guarda en modo seguro, con todas las celdas de
+   entrada bloqueadas (aviso permanente en CONFIGURACION A30:A31 y AYUDA 11/15).
+   Clave de proteccion local: AdaptaPro2026 (control de accidentes, no
+   seguridad de acceso).
+
+2. CONFIGURACION (hoja CONFIGURACION)
+   Complete entidad, RIF, domicilio fiscal y responsable con el boton
+   "Capturar configuracion". Ejercicio 2026, moneda Bs., version 1.1.0 y metodo
+   vienen precargados y no se cambian. Confirme la autorizacion del art. 177
+   (Reg. D. 2.507, G.O.E. 5.662 del 24-09-2003). "Validar configuracion"
+   informa lo que falte. Estado inicial del archivo: SIN CAPTURAR.
+
+3. CATALOGO
+   Registre el maestro con "Alta o modificar material" (codigo, descripcion,
+   unidad). El codigo manda: duplicados por mayusculas/espacios se rechazan y
+   los ceros iniciales se conservan. Limite tecnico: filas 7 a 5006 (5000
+   materiales); totales en 5007 y 5008. La mascara de cantidades (B16) solo
+   cambia la vista: #,##0.00#### (2 decimales) o #,##0 (sin decimales).
+
+4. ENERO Y MESES
+   Capture el saldo inicial de enero en C (cantidad) y D (Bs.) y confirme la
+   apertura ("Confirmar apertura enero" o "Abrir mes siguiente"). Cero es un
+   saldo valido; vacio no: una fila con codigo y C/D vacios bloquea la
+   apertura. Solo un mes puede estar abierto; para abrir otro, cierre el
+   actual. Cada apertura copia catalogo y saldos del mes anterior como
+   VALORES. Columnas: C/D inicial, E/F entradas, G/H ventas, I/J otros,
+   K/L final, O costo promedio = (D+F)/(C+E), H = REDONDEAR(G*O;2),
+   J = REDONDEAR(I*O;2). Si K < 0 la columna Q marca ERROR y el cierre se
+   bloquea. Salidas "otros" (I) exigen detalle en DETALLE_OTROS con soporte;
+   en diciembre el detalle debe conciliar exactamente con la columna I.
+
+5. CIERRE
+   "Validar mes" reporta hallazgos; "Cerrar mes" exige respaldo verificable
+   previo, instantanea y cuadre, y guarda el archivo. El cierre es idempotente
+   (repetirlo no duplica). Ante un fallo a mitad de cierre el mes queda en
+   INCIDENCIA, nunca en exito parcial. Si agotó existencias (K = 0), la ultima
+   categoria recibe el residuo para que el saldo cuadre.
+
+6. RESUMEN, IMPORTACION, NUEVO ANIO Y RESPALDO
+   "Resumen anual": bloque definitivo (meses cerrados) + provisional; usa el
+   saldo del ULTIMO mes cerrado, no suma saldos; las cantidades no se suman
+   entre unidades distintas. "Importar diciembre": solo misma entidad/RIF,
+   moneda, esquema compatible y anio anterior. "Nuevo anio": solo con
+   diciembre cerrado valido; pide ruta nueva, copia estructura/VBA/catalogo,
+   pone anio+1 y reinicia estados (el archivo anterior se conserva).
+   "Respaldo" guarda una copia verificable (manual o pre/post-cierre) en la
+   carpeta _RESPALDOS junto al libro.
+
+7. BITACORA Y AVISOS
+   BITACORA registra accion, objeto, resultado, version, motivo y valores
+   previo/nuevo (trazabilidad interna; no reemplaza firma ni auditoria).
+   Al abrir y en operaciones clave se muestra el aviso del art. 177 y los
+   deberes de conservacion (arts. 88-89 LISLR, art. 64 del Reglamento para
+   destrucciones). Fuente del metodo: https://adaptaproerp.com/blog_openconde/
+   (no se abre solo).
+
+8. LIMITES
+   Windows y Excel de escritorio; probado en Excel 16.0 x86 (32 bits) con
+   region es-VE (decimal ",", miles "."). No verificado en 64 bits, Mac, web
+   ni LibreOffice. 5000 materiales: apertura ~0,5 s, validacion ~3 s,
+   cierre ~13 s (medidos en el equipo de construccion).

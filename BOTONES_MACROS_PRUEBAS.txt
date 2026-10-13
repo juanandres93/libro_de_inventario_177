@@ -1,0 +1,79 @@
+BOTONES_MACROS.txt - inventario automatico de botones (seccion 0.5)
+Libro: T.xlsm | Fecha: 2026-10-10 03:00:29
+Compilacion global: SI (compilacion global 0 errores)
+Modo de ejecucion: cada macro unica se ejecuto una vez con modUI.ModoPrueba = True y libro reabierto
+
+hoja | boton | macro | existe | compila | ejecuta | resultado | estado_excel | bitacora
+CONFIGURACION | Capturar configuracion [Capturar configuracion] | BtnCapturarConfiguracion | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+CONFIGURACION | Validar configuracion [Validar configuracion] | BtnValidarConfiguracion | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+CONFIGURACION | Abrir mes siguiente [Abrir mes siguiente] | BtnAbrirMesSiguiente | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+CONFIGURACION | Confirmar apertura enero [Confirmar apertura enero] | BtnConfirmarAperturaEnero | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+CONFIGURACION | Importar diciembre [Importar diciembre] | BtnImportarDiciembre | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+CONFIGURACION | Nuevo anio [Nuevo anio] | BtnNuevoAnio | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+CONFIGURACION | Ayuda [Ayuda] | BtnAyudaMenu | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+CATALOGO | Alta o modificar material [Alta o modificar material] | BtnAltaMaterial | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-ENE | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-ENE | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-ENE | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-ENE | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-ENE | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-FEB | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-FEB | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-FEB | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-FEB | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-FEB | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-MAR | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-MAR | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-MAR | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-MAR | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-MAR | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-ABR | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-ABR | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-ABR | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-ABR | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-ABR | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-MAY | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-MAY | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-MAY | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-MAY | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-MAY | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-JUN | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-JUN | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-JUN | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-JUN | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-JUN | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-JUL | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-JUL | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-JUL | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-JUL | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-JUL | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-AGO | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-AGO | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-AGO | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-AGO | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-AGO | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-SEP | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-SEP | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-SEP | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-SEP | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-SEP | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-OCT | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-OCT | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-OCT | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-OCT | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-OCT | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-NOV | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-NOV | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-NOV | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-NOV | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-NOV | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+2026-DIC | Validar mes [Validar mes] | BtnValidarMes | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-DIC | Cerrar mes [Cerrar mes] | BtnCerrarMesActual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-DIC | Detalle otros [Detalle otros] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-DIC | Resumen anual [Resumen anual] | BtnResumenAnual | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+2026-DIC | Respaldo [Respaldo] | BtnRespaldo | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +1 filas
+DETALLE_OTROS | Agregar detalle [Agregar detalle] | BtnDetalleOtros | SI | SI (compilacion global 0 errores) | SI | PASS | restaurado | bitacora +0 filas
+
+Macros exigidas por la especificacion: BtnAbrirMesSiguiente, BtnAyudaMenu, BtnCapturarConfiguracion, BtnConfirmarAperturaEnero, BtnImportarDiciembre, BtnNuevoAnio, BtnValidarConfiguracion, BtnAltaMaterial, BtnCerrarMesActual, BtnDetalleOtros, BtnRespaldo, BtnResumenAnual, BtnValidarMes
+Filas: 69 | FAIL: 0
+RESULTADO: PASS (todas las filas en PASS)

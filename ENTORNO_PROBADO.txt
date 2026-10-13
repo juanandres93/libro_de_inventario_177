@@ -1,0 +1,74 @@
+ENTORNO_PROBADO.txt - Deteccion de entorno (tarea2.txt seccion 0.3)
+Fecha de medicion: 09-10-2026
+Metodo: COM Excel.Application (New-Object -ComObject), lectura de registro de
+Windows (sin modificar nada) e informacion del ejecutable EXCEL.EXE.
+Este paso se hizo ANTES de generar codigo de la version 1.2.
+
+===============================================================================
+A) EXCEL DE ESCRITORIO (presente)
+===============================================================================
+Application.Name              = Microsoft Excel
+Application.Version           = 16.0
+Application.Build             = 19127
+Build instalado (ClickToRun)  = 16.0.19127.20800
+Application.OperatingSystem   = Windows (32-bit) NT 10.00
+ClickToRun Platform           = x86
+Ruta de la aplicacion         = C:\Program Files (x86)\Microsoft Office\Root\Office16
+Ejecutable                    = C:\Program Files (x86)\Microsoft Office\Root\Office16\EXCEL.EXE
+Producto/FileVersion          = 16.0.19127.20800
+
+Arquitectura REALMENTE probada: EXCEL 32 BITS (x86).
+  Dos evidencias coincidentes: Application.OperatingSystem declara "(32-bit)" y
+  la clave Platform del registro ClickToRun es "x86".
+Arquitectura 64 bits: NO VERIFICADA (no existe Excel 64 en esta maquina).
+No se declara compatibilidad con Mac, web, Google Sheets ni LibreOffice.
+
+Entorno VBA: VBA7 (Excel 16.0). El codigo no usa API de Windows ni declaraciones
+condicionales (#If), por lo que no depende de VBA6/VBA7 ni de la arquitectura
+(ver seccion 0.4: 0 ocurrencias de "Declare ", "Lib ", "LongPtr", "PtrSafe").
+
+===============================================================================
+B) SISTEMA OPERATIVO Y REGION
+===============================================================================
+Windows 11 Home, version 10.0.26200 (64 bits).
+Sistema de region del equipo: es-VE
+Separador decimal             = ,
+Separador de miles            = .
+
+Idioma de Office (LanguageSettings.LanguageID):
+  indice 1 = 8202 (es-VE)
+  indice 2 = 3082 (es-ES)
+  indice 3 = 3082 (es-ES)
+ClickToRun ClientCulture      = es-es
+
+Excel: DecimalSeparator = "," ; ThousandsSeparator = "." ; UseSystemSeparators = True
+
+===============================================================================
+C) ESTADO DE SEGURIDAD DE MACROS (solo lectura, no se modifico nada)
+===============================================================================
+HKCU\Software\Microsoft\Office\16.0\Excel\Security\AccessVBOM   -> NO DEFINIDO
+  Prueba directa: $wb.VBProject devuelve Nothing y $xl.VBE devuelve Nothing.
+  => ACCESO PROGRAMATICO AL PROYECTO VBA: BLOQUEADO.
+  Consecuencia (seccion 0.6): no se puede ejecutar ahora
+    - VBProject.VBComponents.Import/AddFromFile (construccion nativa), ni
+    - Application.VBE.CommandBars.FindControl(578).Execute (compilacion forzada), ni
+    - exportacion/borrado/reimportacion de modulos (aislamiento de errores).
+  La seccion 0.6 ordena informar el bloqueo y NO habilitar esa opcion por cuenta
+  propia. Estado mientras siga asi: NO CERTIFICADO, con este bloqueo concreto.
+
+HKCU\Software\Microsoft\Office\16.0\Excel\Security\VBAWarnings    -> NO DEFINIDO
+  Valor por defecto de Office = 2 (deshabilitar macros con aviso).
+  => El libro requiere "Habilitar contenido" la primera vez que se abre.
+HKCU\Software\Microsoft\Office\16.0\Excel\Security\DisableAllMacros -> NO DEFINIDO
+Politicas (HKCU/HKLM \Software\Policies\Microsoft\Office\16.0\Excel\Security) -> inexistentes.
+
+No se modifico ninguna clave de registro, no se creo carpeta de confianza y no se
+habilito "Acceso al modelo de objetos de VB".
+
+===============================================================================
+D) CONCLUSION DE LIBERACION DE ESTA SECCION
+===============================================================================
+Hay Excel de escritorio: se puede seguir construyendo y probando.
+Compilacion y construccion 100% segun 0.6.1/0.6.2: PENDIENTE hasta resolver el
+bloqueo AccessVBOM descrito en C. Si el propietario no lo autoriza, el estado
+final sera NO CERTIFICADO con ese bloqueo concreto (0.2 y 0.7).

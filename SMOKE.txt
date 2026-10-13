@@ -1,0 +1,36 @@
+== A. libro de entrega: apertura, compilacion y limpieza (eventos apagados) ==
+  OK    abre sin reparacion con 20 hojas
+  OK    proyecto VBA incorporado
+  OK    compila y ejecuta modUI.TextoMesAbierto
+  OK    modGlobales.PeriodoActual = yyyy-mm
+  OK    modGlobales.AvisoArt177 cita el art. 177 y el decreto
+  OK    modGlobales.HojaMes(1) = 2026-ENE
+  OK    EstadoArchivo = SIN CAPTURAR
+  OK    CONFIGURACION: ejercicio, moneda, version y metodo precargados
+  OK    modValidacion.ValidarMes(1) ejecuta
+  INFO  ValidarMes(1) devolvio: - Entidad vacia. | - RIF vacio. | - Responsable vacio. | 
+  OK    el autocontrol NO viaja en produccion (modPruebas.Suite falla)
+  OK    CATALOGO sin materiales
+  OK    2026-ENE sin renglones
+  OK    sin datos de prueba en las hojas de datos
+  INFO  hojas protegidas nativamente: 20 de 20
+  OK    CONFIGURACION desprotegida de forma deliberada
+  OK    copia de trabajo guardada con formato 52
+== B. evento Workbook_Open con eventos encendidos ==
+  INFO  pid de Excel = 39836
+  OK    Workbook_Open protegio las 20 hojas
+  OK    CONFIGURACION volvio a quedar protegida
+  INFO  no se pudo leer modUI.UltimoAviso: Excepci¢n al llamar a "Run" con los argumentos "1": "No se puede ejecutar la macro "'SMOKE_A.xlsm'!modUI.UltimoAviso". Puede que la macro no est‚ disponible en este libro o que se hayan deshabilitado todas las macros."
+  ... guardado con eventos encendidos (Workbook_BeforeSave) y formato 52
+  OK    guardado con formato 52
+== C. reapertura de la copia guardada (persistencia) ==
+  OK    la copia guardada reabre con 20 hojas
+  OK    la proteccion persiste tras guardar y reabrir
+  OK    el VBA sigue operativo tras guardar
+  OK    sin datos de prueba en la copia guardada
+== D. reapertura con macros deshabilitadas ==
+  OK    sin macros el libro sigue protegido (20/20)
+  OK    con macros deshabilitadas se ve el aviso de modo seguro
+  OK    sin macros no se puede escribir en CATALOGO
+
+RESULTADO: SMOKE OK (libro de produccion operativo)

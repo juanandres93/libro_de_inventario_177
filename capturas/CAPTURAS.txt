@@ -1,0 +1,4 @@
+01_BtnAbrirMesSiguiente.png | macro=BtnAbrirMesSiguiente | hoja=2026-ENE | ejecuto sin excepcion | bytes=120506
+02_BtnAyudaMenu.png | macro=BtnAyudaMenu | hoja=CONFIGURACION | ejecuto sin excepcion | bytes=193600
+03_BtnValidarMes.png | macro=BtnValidarMes | hoja=2026-ENE | ejecuto sin excepcion | bytes=120506
+04_BtnResumenAnual.png | macro=BtnResumenAnual | hoja=RESUMEN_ANUAL | ejecuto sin excepcion | bytes=85449

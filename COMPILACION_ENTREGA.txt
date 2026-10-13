@@ -1,0 +1,7 @@
+Proyecto      : VBAProject
+Modulos       : 36
+Control       : "Compi&lar VBAProject" (Id 578, barra Debug)
+Enabled ANTES : True
+Execute()     : sin excepcion
+Enabled DESPUES: False
+RESULTADO: COMPILA SIN ERRORES (0 errores)

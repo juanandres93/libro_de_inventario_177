@@ -1,0 +1,100 @@
+INFORME DE PRUEBAS - ENTREGA CONDICIONADA 0.7
+AdaptaPro - Libro de inventarios 2026, version 1.1.0
+Fecha de cierre: 10-10-2026
+
+1. OBJETO Y VEREDICTO
+   Objeto: entrega\LIBRO_INVENTARIOS_2026.xlsm (limpio, sin datos de prueba).
+   0.5 PASS 69/69. 0.6 (pasos 1-7) PASS. Autocontrol T01-T28: 28 PASA / 0 FALLA.
+   VEREDICTO: LIBERADO (no NO LIBERAR; no hay fallos pendientes).
+
+2. ENTORNO REALMENTE PROBADO (copiado de ENTORNO_PROBADO.txt, adjunto)
+   Excel 16.0 Build 19127 (16.0.19127.20800) x86 32 bits, en
+   C:\Program Files (x86)\...\Office16\EXCEL.EXE; Windows 11 Home 10.0.26200;
+   region es-VE (decimal ",", miles "."); Office es-VE/es-ES; VBA7 sin API
+   Windows (0 "Declare/Lib/LongPtr/PtrSafe"). 64 bits NO VERIFICADO. Sin
+   compatibilidad declarada con Mac, web, Google Sheets ni LibreOffice.
+
+3. PRUEBA DE FUEGO 0.6 (sobre libro LIMPIO y copia de pruebas, desde disco)
+   0.6.1 Construccion: base + Import de .bas por VBProject (Excel compila y
+     guarda, FileFormat 52); jamas se inyecto vbaProject.bin. PASS.
+   0.6.2 Compilacion forzada (VBE CommandBars.FindControl(1,578).Execute):
+     entregable y pruebas, control Enabled True->False. 0 errores.
+     (COMPILACION_ENTREGA.txt y COMPILACION_PRUEBAS.txt adjuntos.)
+   0.6.3 Aislamiento: no aplica (0 errores en 0.6.2, no hubo ERROR_COMPILACION).
+   0.6.4 Ejecucion de cada macro (libro reabierto por macro, ModoPrueba=True):
+     se confirma resultado, bitacora y que EnableEvents/Calculation/
+     ScreenUpdating/DisplayAlerts quedan como estaban ("restaurado").
+     Entregable limpio: 13/13 PASS; +1 fila BITACORA en AbrirMesSiguiente,
+     ConfirmarAperturaEnero y BtnRespaldo; +0 honesto en el resto (sin
+     configuracion/datos no hay operacion que asentar). Copia de pruebas con
+     datos: 13/13 PASS (AbrirMesSiguiente +1, Respaldo +1 en cada mes).
+     Tablas completas 69 filas en BOTONES_MACROS_ENTREGA.txt y
+     BOTONES_MACROS_PRUEBAS.txt (adjuntas). FAIL: 0.
+   0.6.5 Clic real desde libro externo + PNG (entrega\capturas\):
+     01_BtnAbrirMesSiguiente.png (120506 B): hoja 2026-ENE tras abrir enero:
+       titulo, metodo, moneda/formulas, notas ("Cero es un saldo valido...",
+       "Solo este mes esta abierto..."), cabecera con filtros y botones
+       "Validar mes"/"Cerrar mes"; filas vacias con formato ,000.
+     02_BtnAyudaMenu.png (193600 B): CONFIGURACION con identidad vacia
+       (entidad/RIF/responsable por capturar), 2026/Bs./1.1.0/metodo
+       precargados, SIN CAPTURAR, aviso art. 177, URL y fila de botones.
+     03_BtnValidarMes.png (120506 B): 2026-ENE igual que 01 (validar no
+       escribe en hoja; el reporte va por aviso, silenciado en prueba).
+     04_BtnResumenAnual.png (85449 B): RESUMEN_ANUAL construido: titulo,
+       "Resumen anual por codigo y unidad - ()" (identidad vacia, honesto),
+       metodo/version/URL, "Corte: 2026-10 | Meses cerrados: ninguno |
+       Mes abierto: 2026-ENE" (prueba que el macro 01 abrio enero en la
+       misma sesion), AVISO art. 177 y bloque "TOTALES Bs. por unidad de
+       medida (bloque definitivo)" vacio (sin meses cerrados).
+     Las 4 macros ejecutaron sin excepcion (CAPTURAS.txt adjunto).
+   0.6.6 Macros deshabilitadas/habilitadas (SMOKE.txt adjunto, fases A-D):
+     con macros: abre sin ningun cuadro de error de VBA, Workbook_Open
+     protege 20/20, guardado formato 52, reapertura con VBA operativo y sin
+     datos de prueba. Sin macros (ForceDisable): 20/20 protegidas, CATALOGO
+     no acepta escritura, aviso de modo seguro visible (CONFIGURACION
+     A30:A31). SMOKE OK.
+   0.6.7 Reapertura en otra instancia: archivo guardado reabierto desde disco
+     en instancias nuevas; repetidos paso 2 (COMPILA SIN ERRORES) y paso 4
+     (PASS 13/13, restaurado). Ver instancia2_compila.log e
+     instancia2_botones.log en construccion\out\.
+
+4. AUTOCONTROL T01-T28 (INFORME_AUTOCONTROL_T01_T28.txt adjunto)
+   28 PASA / 0 FALLA el 10-10-2026 sobre T.xlsm final (incluye T25: 5000
+   materiales, apertura 0,53 s, validacion 3,11 s, cierre 13,19 s; T26 exporta
+   PDF_REVISION_MES_ABIERTO.pdf; T27 sin enlaces ni marcadores; T28 cita
+   norma, Gaceta y fecha).
+
+5. PROYECTO Y LIMPIEZA
+   verifica_entrega.py: 20 hojas, 0 vinculos externos, 36 componentes
+   (ThisWorkbook + 20 clases de hoja + 15 modulos de producto), codigo
+   identico a entrega\codigo\, sin modPruebas. CONFORME.
+   verifica_formas: 69 formas, colores/texto/macro OK, ningun boton sobre
+   celda con dato. BOTONES OK.
+   0.8: sin SondaS*, sin diagnosticos, Option Explicit x17, sin API Windows,
+   AVISO_ART177 en A..E + funcion, declaraciones antes del primer
+   procedimiento.
+
+6. SHA-256 DEL .XLSM FINAL
+   LIBRO_INVENTARIOS_2026.xlsm (6485965 bytes):
+   9A5CB1873F374DCEAD9765A9C5B044569D02F803DBE8829A1E3975130DC542FD
+   (Ver MANIFIESTO_SHA256.txt con todos los archivos de entrega.)
+
+7. DEFECTOS CORREGIDOS (detalle en LISTA_REVISION_EN_FRIO.txt)
+   Declaraciones tras el primer procedimiento (causa de los errores del
+   usuario); mojibake por Import ANSI (conversion UTF-8->cp1252); TieneVBA
+   abria el VBE (HasVBProject); apertura sin configurar marcaba INCIDENCIA
+   (guardas con contexto); instancias zombie (higiene de corridas); aviso
+   tapado por botones (reubicado a A30:A31); captura en blanco por carrera
+   del portapapeles (pausa + reintento verificado).
+
+8. COMPATIBILIDAD DECLARADA
+   Solo lo probado: Excel 16.0 de escritorio 32 bits en Windows con region
+   es-VE. 64 bits NO VERIFICADO. No Mac/web/Sheets/LibreOffice.
+
+9. ANEXO: archivos de evidencia en entrega\
+   LIBRO_INVENTARIOS_2026.xlsm, LIBRO_INVENTARIOS_2026_PRUEBAS.xlsm, codigo\,
+   capturas\, BOTONES_MACROS_ENTREGA.txt, BOTONES_MACROS_PRUEBAS.txt,
+   COMPILACION_ENTREGA.txt, COMPILACION_PRUEBAS.txt,
+   INFORME_AUTOCONTROL_T01_T28.txt, SMOKE.txt, ENTORNO_PROBADO.txt,
+   PROCEDIMIENTO_CONSTRUCCION.txt, MANUAL_OPERACION.txt,
+   LISTA_REVISION_EN_FRIO.txt, MANIFIESTO_SHA256.txt y este informe.
